@@ -1,0 +1,10 @@
+---
+- name: Basic Setup
+  hosts: webserver
+  become: true
+  become_user: root
+  become_method: sudo
+  tasks:
+    - name: install git
+      yum: name=git state=present 
+...
