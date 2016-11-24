@@ -1,0 +1,17 @@
+inventory1
+variables
+playbooks/
+    webserver.yml
+    database.yml
+roles/
+    role1/
+        tasks/
+            main.yml
+        handlers/
+            main.yml
+        templates/
+            template.j2
+        files/
+            file1
+        vars/
+            main.yml
