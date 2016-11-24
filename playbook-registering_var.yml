@@ -1,0 +1,11 @@
+---
+- hosts: webserver
+  tasks:
+  - shell: exit 4
+    register: result_var
+    ignore_errors: True
+
+  - name: run this if return code was 5
+    shell: echo return was 5
+    when: result_var.rc == 5
+...
