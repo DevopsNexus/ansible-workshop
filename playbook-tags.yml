@@ -1,0 +1,18 @@
+---
+- hosts: webserver
+  tasks:
+    - name: this is a task with tag "mytask"
+      command: touch mytask
+      tags:
+        - mytask
+
+    - name: this is a task with tag "myothertask"
+      command: touch mytask
+      tags:
+        - myothertask
+
+    - name: this is a task with tag "always"
+      command: touch always
+      tags:
+        - always
+...
