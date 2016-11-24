@@ -1,0 +1,30 @@
+---
+- hosts: webserver
+  vars:
+    - myvar: true
+  tasks:
+    - command: /bin/true
+      register: result
+      ignore_errors: True
+
+    - name: the result failed
+      command: echo failed
+      when: result|failed
+
+    - name: the result succeeded
+      command: echo succeeded
+      when: result|succeeded
+
+    - name: the task was skipped
+      command: echo skipped
+      when: result|skipped
+
+    - name: checkout redhat release for redhat family distros
+      command: cat /etc/redhat-release
+      when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7"
+
+    - name: is "myvar" defined?
+      shell: echo "This certainly isn't epic!"
+      ignore_errors: True
+      when: myvar
+...
