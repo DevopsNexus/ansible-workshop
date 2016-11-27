@@ -1,0 +1,12 @@
+---
+- hosts: webserver
+  tasks:
+    - name: this is the first task
+      command: touch first
+
+    - name: this is the second task
+      command: touch second
+
+    - name: this is the third task
+      command: touch third
+...
