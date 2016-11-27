@@ -1,0 +1,20 @@
+---
+- hosts: webserver
+
+  tasks:
+  - name: install php and libs
+    yum: name={{ item }} state=installed
+    with_items:
+      - php-xml
+      - php
+      - php-zip
+      - php-mbstring
+      - php-mysqlnd
+      - php-gd
+
+  - name: add several users
+    user: name={{ item.name }} state=present groups={{ item.groups }}
+    with_items:
+      - { name: 'testuser1', groups: 'testuser1' }
+      - { name: 'testuser2', groups: 'root' }
+...
