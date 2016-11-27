@@ -1,0 +1,8 @@
+---
+- hosts: webserver
+  vars_files: 
+    - vars.yml
+    - vault_vars.yml
+  tasks:
+    - name: check out mysql password
+      command: touch {{mysql_password}}
