@@ -1,0 +1,11 @@
+---
+- hosts: webserver
+  vars_prompt:
+    - name: "git_hash"
+      prompt: "Pleae supply the branch to clone"
+      default: "master"
+
+  tasks:
+    - name: this is the first task
+      git: repo=https://github.com/training-devops/ansible-workshop.git dest=/tmp/ansible-workshop version={{ git_hash }}
+...
