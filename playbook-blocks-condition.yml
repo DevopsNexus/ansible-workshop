@@ -1,0 +1,12 @@
+---
+- hosts: webserver
+  tasks:
+    - block:
+      - yum: name={{ item }} state=installed
+        with_items:
+        - httpd
+
+      - service: name=httpd state=started enabled=True
+
+      when: ansible_distribution == 'CentOS'
+...
