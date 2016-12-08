@@ -1,0 +1,39 @@
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  vars:
+    - aws_access_key: <key>
+    - aws_secret_key: <secret>
+  tasks:
+
+    - name: Provision a set of instances
+      ec2:
+         aws_access_key: "{{ aws_access_key }}"
+         aws_secret_key: "{{ aws_secret_key }}"
+         key_name: aditya
+         group: default
+         instance_type: t2.micro
+         image: ami-6d1c2007
+         region: us-east-1
+         wait: true
+         exact_count: 2
+         count_tag:
+            Name: Demo
+         instance_tags:
+            Name: Demo
+      register: ec2
+
+    - name: Add all instance public IPs to host group
+      add_host: hostname={{ item.public_ip }} groups=ec2hosts
+      with_items: "{{ ec2.instances }}"
+
+    - name: waiting for 2 minutes for instances to boot up
+      pause: minutes=2
+
+
+- hosts: ec2hosts
+  user: centos
+  sudo: yes
+  tasks:
+    - name: install required software
+      yum: name=vim state=present
