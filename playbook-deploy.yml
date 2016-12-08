@@ -8,5 +8,5 @@
     command: touch {{ inventory_hostname }}
     delegate_to: 127.0.0.1
 
-  - name: actual steps would go here
-    yum: name=vim state=present
+  - name: pulling code
+    git: repo=https://github.com/training-devops/ansible-workshop.git dest=/tmp/ansible-workshop
