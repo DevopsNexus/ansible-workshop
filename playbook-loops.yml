@@ -3,7 +3,7 @@
 
   tasks:
   - name: install php and libs
-    yum: name={{ item }} state=installed
+    dnf: name={{ item }} state=installed
     with_items:
       - php-xml
       - php

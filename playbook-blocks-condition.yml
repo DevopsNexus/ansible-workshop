@@ -2,7 +2,7 @@
 - hosts: webserver
   tasks:
     - block:
-      - yum: name={{ item }} state=installed
+      - dnf: name={{ item }} state=installed
         with_items:
         - httpd
 

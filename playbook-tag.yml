@@ -1,8 +1,8 @@
 - name: install httpd
-  yum: name=httpd state=installed
+  dnf: name=httpd state=installed
 
 - name: install php and libs
-  yum: name={{ item }} state=installed
+  dnf: name={{ item }} state=installed
   with_items:
     - php-xml
     - php

@@ -36,4 +36,4 @@
   sudo: yes
   tasks:
     - name: install required software
-      yum: name=vim state=present
+      dnf: name=vim state=present
